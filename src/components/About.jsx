@@ -42,7 +42,7 @@ const About = () => {
         transition={{ duration: 0.8 }}
         className="text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-10 text-center"
       >
-        About Me
+        About Chaitu
       </motion.h1>
 
       <motion.div
