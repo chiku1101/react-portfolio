@@ -2,8 +2,14 @@ import React from "react";
 import { motion, useInView } from "framer-motion";
 
 const About = () => {
-  const textRef = React.useRef(null);
-  const textInView = useInView(textRef, { amount: 0.3, once: false });
+  // Create refs for each section we want to animate
+  const titleRef = React.useRef(null);
+  const pointRefs = React.useRef([]);
+  const buttonRef = React.useRef(null);
+
+  // Track if each element is in view
+  const titleInView = useInView(titleRef, { amount: 0.5, once: true });
+  const buttonInView = useInView(buttonRef, { amount: 0.5, once: true });
 
   const aboutPoints = [
     {
@@ -35,45 +41,73 @@ const About = () => {
   return (
     <div className="bg-gray-950 flex flex-col items-center justify-center min-h-screen px-6 py-16 md:px-12">
       <motion.h1
+        ref={titleRef}
+        initial={{ opacity: 0, y: 50 }}
         animate={{
-          opacity: textInView ? 1 : 0,
-          y: textInView ? 0 : 50,  // Start from below and slide into view
+          opacity: titleInView ? 1 : 0,
+          y: titleInView ? 0 : 50,
         }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
         className="text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-10 text-center"
-      > 
+      >
         About Me
       </motion.h1>
 
-      <motion.div
-        ref={textRef}
-        className="w-full max-w-3xl space-y-6"
-      >
-        {aboutPoints.map((point, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20 }} // Start from below with fade
-            animate={{ opacity: textInView ? 1 : 0, y: textInView ? 0 : 20 }} // Slide up into view with fade
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="text-lg leading-relaxed text-gray-300 rounded-xl p-6 bg-gray-900/50 hover:bg-gray-900/80 transition-all border border-gray-800"
-          >
-            <div className="flex items-start gap-4">
-              <span className="text-2xl">{point.icon}</span>
-              <div className="space-y-2">
-                {point.title && (
-                  <h3 className="font-semibold text-white">{point.title}</h3>
-                )}
-                <p className="whitespace-pre-line">{point.text}</p>
-              </div>
-            </div>
-          </motion.div>
-        ))}
+      <div className="w-full max-w-3xl space-y-6">
+        {aboutPoints.map((point, index) => {
+          // Create a ref for each point
+          const ref = React.useRef(null);
+          const isInView = useInView(ref, { amount: 0.3, once: true });
 
-        {/* Resume Button */}
+          return (
+            <motion.div
+              key={index}
+              ref={ref}
+              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+              animate={{
+                opacity: isInView ? 1 : 0,
+                x: isInView ? 0 : (index % 2 === 0 ? -50 : 50)
+              }}
+              transition={{ 
+                duration: 0.8, 
+                delay: 0.2, 
+                ease: "easeOut"
+              }}
+              className="text-lg leading-relaxed text-gray-300 rounded-xl p-6 bg-gray-900/50 hover:bg-gray-900/80 transition-all border border-gray-800"
+            >
+              <div className="flex items-start gap-4">
+                <motion.span 
+                  className="text-2xl"
+                  animate={{
+                    scale: isInView ? [1, 1.2, 1] : 1
+                  }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 0.5,
+                    times: [0, 0.5, 1]
+                  }}
+                >
+                  {point.icon}
+                </motion.span>
+                <div className="space-y-2">
+                  {point.title && (
+                    <h3 className="font-semibold text-white">{point.title}</h3>
+                  )}
+                  <p className="whitespace-pre-line">{point.text}</p>
+                </div>
+              </div>
+            </motion.div>
+          );
+        })}
+
         <motion.div
-          initial={{ opacity: 0, y: 20 }} // Start from below with fade
-          animate={{ opacity: 1, y: 0 }} // Slide up into view with fade
-          transition={{ delay: 0.5, duration: 0.5 }}
+          ref={buttonRef}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{
+            opacity: buttonInView ? 1 : 0,
+            y: buttonInView ? 0 : 30
+          }}
+          transition={{ duration: 0.5, delay: 0.3 }}
           className="mt-8 flex justify-center"
         >
           <motion.a
@@ -96,7 +130,7 @@ const About = () => {
             />
           </motion.a>
         </motion.div>
-      </motion.div>
+      </div>
     </div>
   );
 };
