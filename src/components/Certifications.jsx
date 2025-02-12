@@ -5,8 +5,8 @@ const certifications = [
     title: "Front-End Development By Meta",
     issuer: "Meta",
     year: "2024",
-    image: "https://i.redd.it/mqufvvsxdx481.png", 
-    link: "https://coursera.org/share/993388de08843ef24bbad1639ce14435", 
+    image: "https://i.redd.it/mqufvvsxdx481.png",
+    link: "https://coursera.org/share/993388de08843ef24bbad1639ce14435",
   },
   {
     title: "Salesforce AI Associate",
@@ -31,7 +31,7 @@ const Certifications = () => {
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      viewport={{ once: true }}
+      viewport={{ once: true }} // Ensures animation happens only once when in view
     >
       {/* Section Heading */}
       <motion.h1
@@ -39,6 +39,7 @@ const Certifications = () => {
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
+        viewport={{ once: true }} // Ensures animation happens only once
       >
         Certifications
       </motion.h1>
@@ -53,6 +54,7 @@ const Certifications = () => {
             transition: { staggerChildren: 0.2 },
           },
         }}
+        viewport={{ once: true }} // Ensures animation happens only once
       >
         {certifications.map((cert, index) => (
           <motion.a
@@ -65,6 +67,8 @@ const Certifications = () => {
               hidden: { opacity: 0, y: 30 },
               visible: { opacity: 1, y: 0 },
             }}
+            whileInView="visible"
+            viewport={{ once: true }} // Ensures animation happens only once
             whileHover={{ scale: 1.05 }}
           >
             {/* Circular Certification Image */}
