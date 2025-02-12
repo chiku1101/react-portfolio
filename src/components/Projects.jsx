@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { PROJECTS } from "../constants";
 
@@ -26,14 +26,24 @@ const titleVariants = {
 };
 
 const Projects = () => {
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    const hasPlayed = sessionStorage.getItem("projectsAnimationPlayed");
+
+    if (!hasPlayed) {
+      setHasAnimated(true);
+      sessionStorage.setItem("projectsAnimationPlayed", "true"); // Store in sessionStorage to reset on full reload
+    }
+  }, []);
+
   return (
     <div className="border-b border-neutral-900 pb-16">
       {/* Title Animation */}
       <motion.h1
         className="my-20 text-center text-5xl font-extrabold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: false, amount: 0.2 }}
+        initial={hasAnimated ? "hidden" : "visible"}
+        animate="visible"
         variants={titleVariants}
       >
         Projects
@@ -46,9 +56,8 @@ const Projects = () => {
             className="relative overflow-hidden rounded-xl border border-neutral-700 
               bg-gradient-to-b from-black/40 to-black/90 p-6 backdrop-blur-lg shadow-2xl 
               hover:scale-105 hover:shadow-xl group"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.2 }}
+            initial={hasAnimated ? "hidden" : "visible"}
+            animate="visible"
             variants={projectVariants}
             custom={index}
           >
