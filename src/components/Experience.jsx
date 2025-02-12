@@ -1,23 +1,48 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 
 const Experience = () => {
   const sectionRef = useRef(null);
+  const [scrollDirection, setScrollDirection] = useState('down');
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  // Track scroll direction and animation state
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY) {
+        setScrollDirection('down');
+      } else {
+        setScrollDirection('up');
+      }
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
+
   const isInView = useInView(sectionRef, { 
     once: false,
     margin: "-100px" 
   });
+
+  // Set hasAnimated to true when section comes into view while scrolling down
+  useEffect(() => {
+    if (isInView && scrollDirection === 'down') {
+      setHasAnimated(true);
+    }
+  }, [isInView, scrollDirection]);
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"]
   });
 
-  // Parallax effect for title
-  const y = useTransform(scrollYProgress, [0, 1], [-100, 100]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, scrollDirection === 'down' ? 100 : 0]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.9, 1], [0, 1, 1, 0]);
   
-  // Scale effect for title letters
   const titleLetters = "Experience".split("");
 
   const titleCharVariants = {
@@ -29,11 +54,15 @@ const Experience = () => {
       opacity: 1,
       y: 0,
       transition: {
-        delay: i * 0.1,
+        delay: scrollDirection === 'down' ? i * 0.1 : 0,
         duration: 0.5,
         ease: "easeOut"
       }
-    })
+    }),
+    persistVisible: {
+      opacity: 1,
+      y: 0,
+    }
   };
 
   const containerVariants = {
@@ -41,29 +70,33 @@ const Experience = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.4,
-        delayChildren: 1.2, // Delay after title animation
+        staggerChildren: scrollDirection === 'down' ? 0.4 : 0,
+        delayChildren: scrollDirection === 'down' ? 1.2 : 0,
       },
     },
+    persistVisible: {
+      opacity: 1,
+    }
   };
 
-  // Adjust line animation to go up or down based on scroll direction
   const lineVariants = {
     hidden: { height: '0%' },
     visible: { 
       height: '100%',
       transition: { 
-        duration: 1.2,
+        duration: scrollDirection === 'down' ? 1.2 : 0,
         ease: "easeInOut"
       }
+    },
+    persistVisible: {
+      height: '100%',
     }
   };
 
-  // Handle left or right direction for elements
-  const leftItemVariants = {
+  const getItemVariants = (isLeft) => ({
     hidden: { 
       opacity: 0, 
-      x: -100,
+      x: scrollDirection === 'down' ? (isLeft ? -100 : 100) : 0,
       scale: 0.9
     },
     visible: { 
@@ -74,29 +107,15 @@ const Experience = () => {
         type: "spring",
         stiffness: 100,
         damping: 12,
-        duration: 0.6
+        duration: scrollDirection === 'down' ? 0.6 : 0
       }
-    }
-  };
-
-  const rightItemVariants = {
-    hidden: { 
-      opacity: 0, 
-      x: 100,
-      scale: 0.9
     },
-    visible: { 
-      opacity: 1, 
+    persistVisible: {
+      opacity: 1,
       x: 0,
       scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 12,
-        duration: 0.6
-      }
     }
-  };
+  });
 
   const experiences = [
     {
@@ -125,20 +144,26 @@ const Experience = () => {
     }
   ];
 
+  // Helper function to determine animation state
+  const getAnimationState = () => {
+    if (hasAnimated && scrollDirection === 'up') return "persistVisible";
+    if (isInView && scrollDirection === 'down') return "visible";
+    return "hidden";
+  };
+
   return (
     <section 
       ref={sectionRef} 
       className="min-h-screen flex flex-col px-4 sm:px-6 lg:px-8 py-16 max-w-7xl mx-auto bg-[#0a0b0f] overflow-hidden"
     >
-      {/* Animated Title Section */}
       <motion.div 
         style={{ opacity }}
-        className="text-center mb-24 mt-16 relative z-10" // Added mt-16 and z-10
+        className="text-center mb-24 mt-16 relative z-10"
       >
         <motion.div 
           className="flex justify-center items-center gap-1 text-5xl font-bold text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text overflow-hidden"
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          animate={getAnimationState()}
         >
           {titleLetters.map((letter, index) => (
             <motion.span
@@ -157,16 +182,15 @@ const Experience = () => {
         className="relative mx-auto w-full max-w-6xl"
         variants={containerVariants}
         initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
+        animate={getAnimationState()}
       >
-        {/* Animated vertical line container */}
         <div className="absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 bg-gray-800">
           <motion.div
             className="w-full bg-gradient-to-b from-blue-500 via-blue-400 to-blue-600"
             style={{ originY: 0 }}
             variants={lineVariants}
             initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
+            animate={getAnimationState()}
           />
         </div>
 
@@ -176,7 +200,7 @@ const Experience = () => {
           return (
             <motion.div
               key={index}
-              variants={isLeft ? leftItemVariants : rightItemVariants}
+              variants={getItemVariants(isLeft)}
               whileHover={{ 
                 scale: 1.02,
                 transition: { duration: 0.3 }
@@ -185,15 +209,14 @@ const Experience = () => {
                 isLeft ? 'md:mr-auto' : 'md:ml-auto'
               } border border-gray-800`}
             >
-              {/* Animated Timeline Dot */}
               <motion.div 
                 initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
+                animate={hasAnimated ? { scale: 1 } : getAnimationState()}
                 transition={{
                   type: "spring",
                   stiffness: 300,
                   damping: 15,
-                  delay: 0.6 + index * 0.4
+                  delay: scrollDirection === 'down' ? 0.6 + index * 0.4 : 0
                 }}
                 className="absolute top-8 w-4 h-4 rounded-full bg-blue-500 border-4 border-[#0a0b0f] shadow-md shadow-blue-500/50"
                 style={{
@@ -203,7 +226,6 @@ const Experience = () => {
                 }}
               />
 
-              {/* Content */}
               <div className="flex flex-col gap-3">
                 <h3 className="text-xl font-semibold text-white">{exp.role}</h3>
                 <span className="text-sm font-medium text-gray-400">{exp.period}</span>
