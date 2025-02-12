@@ -2,11 +2,9 @@ import React from "react";
 import { motion, useInView } from "framer-motion";
 
 const About = () => {
-  // Create refs for each section we want to animate
   const titleRef = React.useRef(null);
   const buttonRef = React.useRef(null);
 
-  // Track if each element is in view
   const titleInView = useInView(titleRef, { amount: 0.5, once: true });
   const buttonInView = useInView(buttonRef, { amount: 0.5, once: true });
 
@@ -38,7 +36,7 @@ const About = () => {
   ];
 
   return (
-    <div className="bg-gray-950 flex flex-col items-center justify-center min-h-screen px-6 py-16 md:px-12">
+    <div className="bg-black flex flex-col items-center justify-center min-h-screen px-6 py-16 md:px-12">
       <motion.h1
         ref={titleRef}
         initial={{ opacity: 0, y: 50 }}
@@ -52,9 +50,8 @@ const About = () => {
         About Me
       </motion.h1>
 
-      <div className="w-full max-w-3xl space-y-8 mb-16"> {/* Increased margin-bottom */}
+      <div className="w-full max-w-3xl space-y-8 mb-16">
         {aboutPoints.map((point, index) => {
-          // Create a ref for each point
           const ref = React.useRef(null);
           const isInView = useInView(ref, { amount: 0.3, once: true });
 
@@ -72,7 +69,7 @@ const About = () => {
                 delay: 0.2, 
                 ease: "easeOut"
               }}
-              className="text-lg leading-relaxed text-gray-300 rounded-xl p-4 sm:p-6 bg-gray-900/50 hover:bg-gray-900/80 transition-all border border-gray-800"
+              className="text-lg leading-relaxed text-gray-300 rounded-xl p-4 sm:p-6 bg-black hover:bg-gray-900 transition-all border border-gray-800"
             >
               <div className="flex items-start gap-3 sm:gap-4">
                 <motion.span 
@@ -99,7 +96,6 @@ const About = () => {
           );
         })}
 
-        {/* Resume Button with extra bottom margin */}
         <motion.div
           ref={buttonRef}
           initial={{ opacity: 0, y: 30 }}
@@ -114,7 +110,7 @@ const About = () => {
             href="/Chaitanya_Sonar_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative inline-flex items-center gap-2 rounded-lg bg-gray-900 px-6 sm:px-8 py-3 sm:py-4 text-lg font-semibold text-white transition-all hover:bg-gray-800"
+            className="group relative inline-flex items-center gap-2 rounded-lg bg-black px-6 sm:px-8 py-3 sm:py-4 text-lg font-semibold text-white transition-all hover:bg-gray-900"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
