@@ -133,7 +133,7 @@ const Experience = () => {
       {/* Animated Title Section */}
       <motion.div 
         style={{ opacity }}
-        className="text-center mb-24"
+        className="text-center mb-24 mt-16 relative z-10" // Added mt-16 and z-10
       >
         <motion.div 
           className="flex justify-center items-center gap-1 text-5xl font-bold text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text overflow-hidden"
@@ -205,27 +205,9 @@ const Experience = () => {
 
               {/* Content */}
               <div className="flex flex-col gap-3">
-                <div className="flex flex-col gap-2">
-                  <h3 className="text-xl font-semibold text-white">{exp.role}</h3>
-                  <span className="text-sm font-medium text-gray-400">
-                    {exp.period}
-                  </span>
-                </div>
-
-                <p className="text-gray-400 leading-relaxed">
-                  {exp.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mt-2">
-                  {exp.skills.map((skill, skillIndex) => (
-                    <span
-                      key={skillIndex}
-                      className="px-3 py-1 text-sm font-medium text-blue-400 bg-blue-500/10 rounded-full hover:bg-blue-500/20 transition-colors duration-300"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+                <h3 className="text-xl font-semibold text-white">{exp.role}</h3>
+                <span className="text-sm font-medium text-gray-400">{exp.period}</span>
+                <p className="text-gray-400 leading-relaxed">{exp.description}</p>
               </div>
             </motion.div>
           );
