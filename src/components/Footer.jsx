@@ -5,6 +5,7 @@ const Footer = () => {
   return (
     <footer className="w-full py-8 bg-black mt-12">
       <motion.div
+      
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3, duration: 1 }}
@@ -24,7 +25,6 @@ const Footer = () => {
           transition={{ delay: 0.6, duration: 1 }}
           className="mt-3 text-sm text-gray-400 font-light"
         >
-          Built with React & Framer Motion
         </motion.p>
       </motion.div>
     </footer>
