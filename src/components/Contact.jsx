@@ -38,7 +38,7 @@ const Contact = () => {
   return (
     <div className="h-screen w-full bg-black flex flex-col items-center">
       <div className="flex-grow flex flex-col items-center justify-center px-4 w-full">
-        <h1 className="text-6xl md:text-7xl lg:text-5xl font-bold mb-8 bg-gradient-to-r from-blue-500 via-purple-500 to-purple-600 text-transparent bg-clip-text">
+        <h1 className="text-7xl md:text-8xl lg:text-7xl font-bold mb-7 bg-gradient-to-r from-blue-500 via-purple-500 to-purple-600 text-transparent bg-clip-text">
           LET'S POOL OUR EFFORTS
         </h1>
 
@@ -73,8 +73,8 @@ const Contact = () => {
             />
             {status.error && <p className="text-red-500 text-sm">{status.error}</p>}
             {status.success && <p className="text-green-500 text-sm">Message sent successfully!</p>}
-            <button type="submit" className="w-full p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-              {status.loading ? 'Sending...' : 'Send Message'} <Send className="inline w-5 h-5 ml-2" />
+            <button type="submit" className="w-full p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center">
+              {status.loading ? 'Sending...' : 'Send Message'} <Send className="w-5 h-5 ml-2" />
             </button>
           </form>
         </div>
