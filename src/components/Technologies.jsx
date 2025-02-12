@@ -5,7 +5,6 @@ import { SiMongodb, SiExpress, SiDjango, SiTailwindcss, SiPython, SiJavascript }
 import { FaNodeJs } from "react-icons/fa";
 import { BiLogoPostgresql } from "react-icons/bi";
 import { motion, useInView } from "framer-motion";
-import { Icon } from "lucide-react";
 
 const Technologies = () => {
   const containerRef = useRef(null);
@@ -20,7 +19,6 @@ const Technologies = () => {
     { Icon: SiExpress, color: "text-gray-400", bgColor: "bg-gray-400", name: "Express.js", link: "https://expressjs.com/" },
     { Icon: FaNodeJs, color: "text-orange-400", bgColor: "bg-orange-400", name: "Node.js", link: "https://nodejs.org/" },
     { Icon: BiLogoPostgresql, color: "text-sky-700", bgColor: "bg-sky-700", name: "PostgreSQL", link: "https://www.postgresql.org/" },
-    
     { Icon: SiPython, color: "text-yellow-400", bgColor: "bg-yellow-400", name: "Python", link: "https://www.python.org/" },
     { Icon: SiTailwindcss, color: "text-blue-500", bgColor: "bg-blue-500", name: "Tailwind CSS", link: "https://tailwindcss.com/" },
     { Icon: SiJavascript, color: "text-yellow-400", bgColor: "bg-yellow-400", name: "JavaScript", link: "https://www.javascript.com/" },
@@ -40,7 +38,7 @@ const Technologies = () => {
   };
 
   return (
-    <div className="h-screen bg-gray-950 flex flex-col justify-center py-8">
+    <div className="h-screen bg-black flex flex-col justify-center py-8">
       <div className="container mx-auto px-4" ref={containerRef}>
         <motion.h1 
           ref={titleRef}
@@ -54,7 +52,7 @@ const Technologies = () => {
           </span>
         </motion.h1>
         <motion.div 
-          className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl mx-auto"
+          className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={{ visible: { transition: { staggerChildren: 0.2 } } }}
