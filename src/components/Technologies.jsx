@@ -9,8 +9,8 @@ import { motion, useInView } from "framer-motion";
 const Technologies = () => {
   const containerRef = useRef(null);
   const titleRef = useRef(null);
-  const isInView = useInView(containerRef, { once: false, margin: "-100px" });
-  const isTitleInView = useInView(titleRef, { once: false });
+  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+  const isTitleInView = useInView(titleRef, { once: true });
 
   const icons = [
     { Icon: RiReactjsLine, color: "text-cyan-400", bgColor: "bg-cyan-400", name: "React", link: "https://react.dev/" },
@@ -47,7 +47,9 @@ const Technologies = () => {
           animate={isTitleInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: -50, scale: 0.8 }}
           transition={{ duration: 0.6 }}
         >
-          <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">Technologies</span>
+          <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+            Technologies
+          </span>
         </motion.h1>
         <motion.div 
           className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl mx-auto"
@@ -63,10 +65,16 @@ const Technologies = () => {
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
                 className="relative overflow-hidden rounded-xl bg-gray-900 p-8 h-48 flex flex-col items-center justify-center border border-gray-800 transition-all duration-300 group-hover:border-gray-700 group-hover:shadow-lg"
               >
-                <motion.div animate={isInView ? { y: [0, -8, 0] } : {}} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: index * 0.2 }}>
+                <div>
                   <Icon className={`text-8xl ${color} transition-all duration-300 group-hover:scale-110`} />
-                </motion.div>
-                <motion.span className={`mt-6 text-base font-medium ${color}`} variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}>
+                </div>
+                <motion.span 
+                  className={`mt-6 text-base font-medium ${color}`}
+                  variants={{ 
+                    hidden: { opacity: 0, y: 10 }, 
+                    visible: { opacity: 1, y: 0 }
+                  }}
+                >
                   {name}
                 </motion.span>
                 <div className={`absolute -inset-1 opacity-0 group-hover:opacity-20 blur-xl transition-all duration-300 ${bgColor}`} />
