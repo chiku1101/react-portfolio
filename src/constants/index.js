@@ -93,13 +93,7 @@ export const PROJECTS = [
       "A personal portfolio website showcasing projects, skills, and contact information.",
     technologies: ["Tailwind CSS", "React", "JavaScript"],
   },
-  {
-    title: "Project Management App",
-    image: project4,
-    description:
-      "A web application for managing projects, teams, and tasks with real-time updates.",
-    technologies: ["React", "Node.js", "MongoDB", "Socket.io"],
-  },
+  
 ];
 
 // Contact Section Content
