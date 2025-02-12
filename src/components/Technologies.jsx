@@ -1,10 +1,11 @@
 import React, { useRef } from "react";
 import { RiReactjsLine } from "react-icons/ri";
 import { TbBrandNextjs } from "react-icons/tb";
-import { SiMongodb, SiExpress, SiDjango, SiTailwindcss, SiPython } from "react-icons/si";
+import { SiMongodb, SiExpress, SiDjango, SiTailwindcss, SiPython, SiJavascript } from "react-icons/si";
 import { FaNodeJs } from "react-icons/fa";
 import { BiLogoPostgresql } from "react-icons/bi";
 import { motion, useInView } from "framer-motion";
+import { Icon } from "lucide-react";
 
 const Technologies = () => {
   const containerRef = useRef(null);
@@ -19,9 +20,10 @@ const Technologies = () => {
     { Icon: SiExpress, color: "text-gray-400", bgColor: "bg-gray-400", name: "Express.js", link: "https://expressjs.com/" },
     { Icon: FaNodeJs, color: "text-orange-400", bgColor: "bg-orange-400", name: "Node.js", link: "https://nodejs.org/" },
     { Icon: BiLogoPostgresql, color: "text-sky-700", bgColor: "bg-sky-700", name: "PostgreSQL", link: "https://www.postgresql.org/" },
-    { Icon: SiDjango, color: "text-green-400", bgColor: "bg-green-400", name: "Django", link: "https://www.djangoproject.com/" },
+    
     { Icon: SiPython, color: "text-yellow-400", bgColor: "bg-yellow-400", name: "Python", link: "https://www.python.org/" },
-    { Icon: SiTailwindcss, color: "text-blue-500", bgColor: "bg-blue-500", name: "Tailwind CSS", link: "https://tailwindcss.com/" }
+    { Icon: SiTailwindcss, color: "text-blue-500", bgColor: "bg-blue-500", name: "Tailwind CSS", link: "https://tailwindcss.com/" },
+    { Icon: SiJavascript, color: "text-yellow-400", bgColor: "bg-yellow-400", name: "JavaScript", link: "https://www.javascript.com/" },
   ];
 
   const cardVariants = {
