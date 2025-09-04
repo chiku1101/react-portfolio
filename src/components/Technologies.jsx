@@ -6,7 +6,7 @@ import { FaNodeJs } from "react-icons/fa";
 import { BiLogoPostgresql } from "react-icons/bi";
 import { motion, useInView } from "framer-motion";
 
-const Technologies = () => {
+const Technologies = ({ id }) => {
   const containerRef = useRef(null);
   const titleRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
@@ -38,7 +38,7 @@ const Technologies = () => {
   };
 
   return (
-    <div className="h-screen bg-black flex flex-col justify-center py-8">
+    <div id={id} className="h-screen bg-black flex flex-col justify-center py-8">
       <div className="container mx-auto px-4" ref={containerRef}>
         <motion.h1 
           ref={titleRef}

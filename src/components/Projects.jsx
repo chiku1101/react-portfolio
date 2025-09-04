@@ -25,7 +25,7 @@ const titleVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
 };
 
-const Projects = () => {
+const Projects = ({ id }) => {
   const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const Projects = () => {
   }, []);
 
   return (
-    <div className="border-b border-neutral-900 pb-16">
+    <div id={id} className="border-b border-neutral-900 pb-16">
       {/* Title Animation */}
       <motion.h1
         className="my-20 text-center text-5xl font-extrabold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent"

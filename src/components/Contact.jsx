@@ -8,7 +8,7 @@ const EMAILJS_PUBLIC_KEY = "yAZ2pii-ZSB7RSUYf";
 
 const contactInfo = [];
 
-const Contact = () => {
+const Contact = ({ id }) => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState({ loading: false, error: null, success: false });
 
@@ -36,7 +36,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="h-screen w-full bg-black flex flex-col items-center">
+    <div id={id} className="h-screen w-full bg-black flex flex-col items-center">
       <div className="flex-grow flex flex-col items-center justify-center px-4 w-full">
         <h1 className="text-7xl md:text-8xl lg:text-7xl font-bold mb-7 bg-gradient-to-r from-blue-500 via-purple-500 to-purple-600 text-transparent bg-clip-text">
           LET'S POOL OUR EFFORTS

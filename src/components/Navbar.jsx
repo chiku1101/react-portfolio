@@ -42,7 +42,7 @@ const Navbar = () => {
   const [isLogoHovered, setIsLogoHovered] = useState(false);
 
   return (
-    <nav className="relative mb-20 flex items-center justify-between py-6">
+    <nav className="relative flex items-center justify-between py-4 sm:py-6 mb-0 sm:mb-20">
       {/* Logo Section */}
       <motion.div
         className="flex flex-shrink-0 items-center"
@@ -90,7 +90,7 @@ const Navbar = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
-                className="absolute left-1/2 top-20 -translate-x-1/2 whitespace-nowrap rounded-lg bg-neutral-900/90 px-4 py-2 text-sm font-medium shadow-xl"
+                className="absolute left-1/2 top-16 sm:top-20 -translate-x-1/2 whitespace-nowrap rounded-lg bg-neutral-900/90 px-4 py-2 text-sm font-medium shadow-xl"
               >
                 Chaitanya Sonar
               </motion.div>
@@ -101,7 +101,7 @@ const Navbar = () => {
 
       {/* Social Icons Section */}
       <motion.div
-        className="m-8 flex items-center justify-center gap-8 text-3xl"
+        className="m-2 sm:m-8 flex items-center justify-center gap-3 sm:gap-8 text-2xl sm:text-3xl"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
@@ -140,14 +140,14 @@ const Navbar = () => {
                 }}
               />
               
-              {/* Floating label with backdrop blur */}
+              {/* Floating label with backdrop blur - Only show on larger screens */}
               <AnimatePresence>
                 {hoveredIcon === index && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
-                    className="absolute left-1/2 -bottom-10 -translate-x-1/2 rounded-lg bg-neutral-900/90 px-4 py-2 text-sm font-medium shadow-xl backdrop-blur-sm"
+                    className="hidden sm:block absolute left-1/2 -bottom-10 -translate-x-1/2 rounded-lg bg-neutral-900/90 px-4 py-2 text-sm font-medium shadow-xl backdrop-blur-sm"
                   >
                     {label}
                     <div className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-neutral-900/90" />

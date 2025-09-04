@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 
-const Experience = () => {
+const Experience = ({ id }) => {
   const sectionRef = useRef(null);
   const [scrollDirection, setScrollDirection] = useState('down');
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -100,6 +100,7 @@ const Experience = () => {
   return (
     <section 
       ref={sectionRef} 
+      id={id}
       className="min-h-screen flex flex-col px-4 sm:px-6 lg:px-8 py-16 max-w-7xl mx-auto bg-black overflow-hidden"
     >
       <motion.div style={{ opacity }} className="text-center mb-24 mt-16 relative z-10">

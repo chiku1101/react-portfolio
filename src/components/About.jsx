@@ -1,7 +1,7 @@
 import React from "react";
 import { motion, useInView } from "framer-motion";
 
-const About = () => {
+const About = ({ id }) => {
   const titleRef = React.useRef(null);
   const buttonRef = React.useRef(null);
 
@@ -36,7 +36,7 @@ const About = () => {
   ];
 
   return (
-    <div className="bg-black flex flex-col items-center justify-center min-h-screen px-6 py-16 md:px-12">
+    <div id={id} className="bg-black flex flex-col items-center justify-center min-h-screen px-6 py-16 md:px-12">
       <motion.h1
         ref={titleRef}
         initial={{ opacity: 0, y: 50 }}
