@@ -4,7 +4,7 @@ import emailjs from '@emailjs/browser';
 
 const EMAILJS_SERVICE_ID = "service_t35zfge";
 const EMAILJS_TEMPLATE_ID = "template_56cznau";
-const EMAILJS_PUBLIC_KEY = "yAZ2pii-ZSB7RSUYf";
+const EMAILJS_PUBLIC_KEY = "ydjbRvdrXB-ptxTFO";
 
 const contactInfo = [];
 
