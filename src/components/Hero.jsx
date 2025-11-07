@@ -31,15 +31,16 @@ const Hero = () => {
               variants={fadeIn}
               className="text-3xl md:text-4xl lg:text-5xl font-normal text-gray-600 tracking-airier"
             >
-              Full Stack Developer
+              Securing Systems, Solving Algorithms, Building Decentralized Solutions
             </motion.h2>
             
             <motion.p
               variants={fadeIn}
               className="text-lg md:text-xl text-gray-500 leading-relaxed max-w-xl tracking-airy font-normal"
             >
-              I build scalable web applications with clean code and modern technologies. 
-              Passionate about creating seamless digital experiences.
+              I'm a Full Stack Developer, Cybersecurity & Blockchain student, and DSA aspirant. 
+              I build scalable web applications with clean code and modern technologies, while exploring 
+              the realms of cybersecurity, blockchain, and algorithmic problem-solving.
             </motion.p>
 
             <motion.div
