@@ -86,27 +86,26 @@ export const EDUCATION = [
 // Projects Section Content
 export const PROJECTS = [
   {
-    title: "Food Ordering System",
+    title: "CampusEdge",
     image: project1,
     description:
-      "A fully functional e-commerce website with features like product listing, shopping cart, and user authentication.",
-    technologies: ["HTML", "CSS", "Python", "Django", "SQL"],
+      "A campus recruitment platform connecting students with opportunities and companies with talent through an AI-powered platform. Features include streamlined placements, secure authentication, and role-based access control for multiple user types.",
+    technologies: ["React", "Node.js", "MongoDB", "Tailwind CSS", "AI Integration"],
   },
   {
-    title: "E-commerce Platform",
+    title: "EchoBoard",
     image: project2,
     description:
-      "An application for managing tasks and projects, with features such as task creation, assignment, and progress tracking.",
-    technologies: ["HTML", "CSS", "Django", "PostgreSQL"],
+      "A decentralized community bulletin board for campus communities. Connect, share, and engage through announcements, events, polls, and discussions. Built with modern web technologies for seamless user experience.",
+    technologies: ["React", "Node.js", "Blockchain", "Web3", "Tailwind CSS"],
   },
   {
-    title: "Portfolio Website",
+    title: "GoVroom",
     image: project3,
     description:
-      "A personal portfolio website showcasing projects, skills, and contact information.",
-    technologies: ["Tailwind CSS", "React", "JavaScript"],
+      "A modern car rental platform offering unbeatable prices, unlimited miles, and flexible pick-up options. Features an intuitive booking system with real-time availability and seamless user experience.",
+    technologies: ["React", "Node.js", "MongoDB", "Tailwind CSS", "Payment Integration"],
   },
-  
 ];
 
 // Contact Section Content
