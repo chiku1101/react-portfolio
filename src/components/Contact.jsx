@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { Phone, Mail, Send } from 'lucide-react';
+import { Send } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 const EMAILJS_SERVICE_ID = "service_t35zfge";
 const EMAILJS_TEMPLATE_ID = "template_56cznau";
 const EMAILJS_PUBLIC_KEY = "ydjbRvdrXB-ptxTFO";
-
-const contactInfo = [];
 
 const Contact = ({ id }) => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -36,64 +34,81 @@ const Contact = ({ id }) => {
   };
 
   return (
-    <div id={id} className="h-screen w-full bg-black flex flex-col items-center">
-      <div className="flex-grow flex flex-col items-center justify-center px-4 w-full">
-        <h1 className="text-7xl md:text-8xl lg:text-7xl font-bold mb-7 bg-gradient-to-r from-blue-500 via-purple-500 to-purple-600 text-transparent bg-clip-text">
-          LET'S POOL OUR EFFORTS
-        </h1>
+    <section id={id} className="py-20 md:py-32 w-full">
+      <div className="w-full max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+      <div className="max-w-2xl mx-auto">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-gray-900 mb-12 tracking-airier">
+          Get in Touch
+        </h2>
 
-        <div className="w-full max-w-lg">
-          <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
             <input
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
               placeholder="Your Name"
-              className="w-full p-3 bg-[#111827] border border-gray-700 rounded-lg text-white placeholder-gray-400"
+              className="w-full px-5 py-4 text-base border border-gray-300 focus:border-gray-900 focus:outline-none transition-colors tracking-airy font-normal"
               required
             />
+          </div>
+          <div>
             <input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="Your@email.com"
-              className="w-full p-3 bg-[#111827] border border-gray-700 rounded-lg text-white placeholder-gray-400"
+              placeholder="Your Email"
+              className="w-full px-5 py-4 text-base border border-gray-300 focus:border-gray-900 focus:outline-none transition-colors tracking-airy font-normal"
               required
             />
+          </div>
+          <div>
             <textarea
               name="message"
               value={formData.message}
               onChange={handleChange}
-              rows="4"
+              rows="6"
               placeholder="Message"
-              className="w-full p-3 bg-[#111827] border border-gray-700 rounded-lg text-white placeholder-gray-400 resize-none"
+              className="w-full px-5 py-4 text-base border border-gray-300 focus:border-gray-900 focus:outline-none transition-colors resize-none tracking-airy font-light"
               required
             />
-            {status.error && <p className="text-red-500 text-sm">{status.error}</p>}
-            {status.success && <p className="text-green-500 text-sm">Message sent successfully!</p>}
-            <button type="submit" className="w-full p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center">
-              {status.loading ? 'Sending...' : 'Send Message'} <Send className="w-5 h-5 ml-2" />
-            </button>
-          </form>
-        </div>
+          </div>
+          
+          {status.error && (
+            <p className="text-base text-red-600 tracking-airy font-normal">{status.error}</p>
+          )}
+          {status.success && (
+            <p className="text-base text-green-600 tracking-airy font-normal">Message sent successfully!</p>
+          )}
+          
+          <button
+            type="submit"
+            disabled={status.loading}
+            className="w-full md:w-auto px-8 py-4 bg-gray-900 text-white text-base font-normal hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 tracking-airy"
+          >
+            {status.loading ? 'Sending...' : 'Send Message'}
+            {!status.loading && <Send className="w-5 h-5" />}
+          </button>
+        </form>
 
-        <div className="mt-8 space-y-4">
-          {contactInfo.map((item, index) => (
-            <div key={index} className="flex items-center space-x-4 bg-[#111827] p-4 rounded-lg">
-              <item.icon className="w-6 h-6 text-blue-600" />
-              <div>
-                <h3 className="font-semibold text-white">{item.title}</h3>
-                {item.details.map((detail, idx) => (
-                  <p key={idx} className="text-gray-400 text-sm">{detail}</p>
-                ))}
-              </div>
-            </div>
-          ))}
+        <div className="mt-12 pt-12 border-t border-gray-200">
+          <div className="space-y-4 text-base md:text-lg text-gray-600 tracking-airy font-normal">
+            <p>
+              <span className="font-normal text-gray-900">Email:</span> chaitanyasonar339@gmail.com
+            </p>
+            <p>
+              <span className="font-normal text-gray-900">Phone:</span> +91 8177968861
+            </p>
+            <p>
+              <span className="font-normal text-gray-900">Location:</span> KL University, Vaddeswaram, Guntur, Andhra Pradesh, India
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+      </div>
+    </section>
   );
 };
 

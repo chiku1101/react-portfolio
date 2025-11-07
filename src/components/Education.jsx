@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { EXPERIENCES, EDUCATION } from '../constants';
+import { EDUCATION } from '../constants';
 
-const Experience = ({ id }) => {
+const Education = ({ id }) => {
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
@@ -18,14 +18,13 @@ const Experience = ({ id }) => {
           transition={{ duration: 0.6 }}
           className="text-4xl md:text-5xl lg:text-6xl font-normal text-gray-900 mb-16 tracking-airier"
         >
-          Education & Experience
+          Education
         </motion.h2>
 
         <div className="space-y-12">
-          {/* Education Section */}
           {EDUCATION.map((edu, index) => (
             <motion.div
-              key={`edu-${index}`}
+              key={index}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
@@ -54,45 +53,11 @@ const Experience = ({ id }) => {
               </div>
             </motion.div>
           ))}
-
-          {/* Experience Section */}
-          {EXPERIENCES.map((exp, index) => (
-            <motion.div
-              key={`exp-${index}`}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              variants={fadeIn}
-              className="border-l-2 border-gray-200 pl-6 md:pl-8 relative"
-            >
-              <div className="absolute -left-2 top-0 w-4 h-4 bg-gray-900 rounded-full" />
-              <div className="space-y-2">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-                  <h3 className="text-xl md:text-2xl lg:text-3xl font-normal text-gray-900 tracking-airier">
-                    {exp.role}
-                  </h3>
-                  <span className="text-base md:text-lg text-gray-500 tracking-airy font-normal">{exp.year}</span>
-                </div>
-                <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-3xl tracking-airy font-normal">
-                  {exp.description}
-                </p>
-                <div className="flex flex-wrap gap-2 pt-2">
-                  {exp.technologies.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="px-4 py-2 text-sm font-normal bg-gray-100 text-gray-700 tracking-airy"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          ))}
         </div>
       </div>
     </section>
   );
 };
 
-export default Experience;
+export default Education;
+

@@ -1,98 +1,86 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { HERO_CONTENT } from "../constants";
-import profilePic from "../assets/pic.png";
 
 const Hero = () => {
-  const fadeIn = (delay) => ({
+  const fadeIn = {
     hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, delay: delay, ease: "easeOut" }
-    }
-  });
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
 
   return (
-    <div className="bg-black border-b border-neutral-900 pb-10 lg:mb-40 relative overflow-hidden">
-      {/* Background gradient (optional, can be removed if not needed) */}
-      <div className="absolute inset-0 bg-black" />
-
-      <div className="flex flex-wrap relative">
-        {/* Left Section */}
-        <div className="w-full lg:w-1/2">
-          <div className="flex flex-col items-center lg:items-start p-10 lg:p-16">
-            
-            {/* Name at the top */}
+    <section className="min-h-screen flex items-center justify-center pt-20 md:pt-32 pb-16 w-full">
+      <div className="w-full max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+        <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+          {/* Left Section */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={{
+              visible: { transition: { staggerChildren: 0.2 } }
+            }}
+            className="space-y-6"
+          >
             <motion.h1
-              variants={fadeIn(0)}
-              initial="hidden"
-              animate="visible"
-              className="text-6xl font-extrabold tracking-tight lg:text-8xl 
-                         text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500
-                         transition-all duration-500 transform hover:scale-105 cursor-pointer"
+              variants={fadeIn}
+              className="text-5xl md:text-6xl lg:text-7xl font-normal text-gray-900 leading-tight tracking-airier"
             >
-              Chaitanya Sonar
+              Hi, I'm <span className="font-normal">Chaitanya Sonar</span>
             </motion.h1>
-
-            {/* Two-line space */}
-            <div className="h-8"></div>
-
-            {/* "Elevate Your Vision" tagline */}
+            
             <motion.h2
-              variants={fadeIn(0.3)}
-              initial="hidden"
-              animate="visible"
-              className="relative text-4xl font-semibold tracking-tight text-transparent bg-clip-text 
-                         bg-gradient-to-r from-pink-400 to-purple-600 
-                         transition-all duration-500 cursor-pointer"
+              variants={fadeIn}
+              className="text-3xl md:text-4xl lg:text-5xl font-normal text-gray-600 tracking-airier"
             >
-              Elevate Your Vision
+              Full Stack Developer
             </motion.h2>
-
-            {/* Extra spacing */}
-            <div className="h-4"></div>
-
-            {/* "Full Stack Developer" tagline */}
-            <motion.h3
-              variants={fadeIn(0.5)}
-              initial="hidden"
-              animate="visible"
-              className="relative text-3xl font-medium tracking-tight text-transparent bg-clip-text 
-                         bg-gradient-to-r from-pink-300 to-purple-500 
-                         transition-all duration-500 cursor-pointer"
-            >
-              Full Stack Developer 🚀
-            </motion.h3>
-
+            
             <motion.p
-              variants={fadeIn(0.6)}
-              initial="hidden"
-              animate="visible"
-              className="mt-6 max-w-xl text-lg font-light tracking-tighter text-gray-300
-                         bg-white/10 dark:bg-neutral-800/50 rounded-lg p-6 shadow-md hover:shadow-xl transition-all"
+              variants={fadeIn}
+              className="text-lg md:text-xl text-gray-500 leading-relaxed max-w-xl tracking-airy font-normal"
             >
-              Crafting seamless digital experiences through clean code, innovative design, and a passion for problem-solving.  
-              Let's transform ideas into reality.
+              I build scalable web applications with clean code and modern technologies. 
+              Passionate about creating seamless digital experiences.
             </motion.p>
-          </div>
-        </div>
 
-        {/* Right Section - Image */}
-        <div className="w-full lg:w-1/2 lg:p-10">
-          <div className="flex justify-center">
-            <motion.img
-              src={profilePic}
-              alt="Chaitanya Sonar"
-              className="rounded-full shadow-lg"
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 1.2 }}
-            />
-          </div>
+            <motion.div
+              variants={fadeIn}
+              className="flex flex-wrap gap-4 pt-4"
+            >
+              <a
+                href="#contact"
+                className="px-8 py-4 bg-gray-900 text-white text-base font-normal tracking-airy hover:bg-gray-800 transition-colors"
+              >
+                Get in Touch
+              </a>
+              <a
+                href="/Chaitanya_Sonar_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-4 border border-gray-300 text-gray-900 text-base font-normal tracking-airy hover:bg-gray-50 transition-colors"
+              >
+                View Resume
+              </a>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Section */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="flex justify-center md:justify-end"
+          >
+            <div className="w-80 h-80 md:w-96 md:h-96 lg:w-[500px] lg:h-[500px] rounded-full overflow-hidden">
+              <img
+                src="/undefined (1).jpeg"
+                alt="Chaitanya Sonar"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </motion.div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

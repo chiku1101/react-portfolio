@@ -1,133 +1,54 @@
 import React from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 const About = ({ id }) => {
-  const titleRef = React.useRef(null);
-  const buttonRef = React.useRef(null);
-
-  const titleInView = useInView(titleRef, { amount: 0.5, once: true });
-  const buttonInView = useInView(buttonRef, { amount: 0.5, once: true });
-
-  const aboutPoints = [
-    {
-      icon: "👋",
-      text: "Hey there! I'm Chaitanya Sonar, a passionate Full-Stack Developer skilled in React, Next.js, Node.js, MongoDB, PostgreSQL, and more. I love turning ideas into real-world applications and exploring new technologies."
-    },
-    {
-      icon: "🚀",
-      title: "My Expertise & Achievements",
-      text: "Skilled in React, Next.js, Node.js, MongoDB, PostgreSQL, Redis, Blockchain, and Tailwind CSS. Currently interning at TwiLearn, gaining hands-on experience in modern development."
-    },
-    {
-      icon: "❤️",
-      title: "Why I Love What I Do",
-      text: "Technology is more than just code for me—it's about problem-solving, innovation, and making an impact. I love building efficient web applications and exploring blockchain solutions."
-    },
-    {
-      icon: "🔍",
-      title: "How I Work",
-      text: "I believe in writing clean, scalable, and maintainable code. My workflow usually involves:\n1️⃣ Understanding the problem\n2️⃣ Planning architecture & UX\n3️⃣ Building with creativity & best practices\n4️⃣ Testing, optimizing, and refining for performance"
-    },
-    {
-      icon: "💫",
-      title: "Let's Connect!",
-      text: "I'm open to new opportunities, collaborations, and tech discussions. Feel free to reach out via email, LinkedIn, or GitHub!"
-    }
-  ];
+  const fadeIn = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
 
   return (
-    <div id={id} className="bg-black flex flex-col items-center justify-center min-h-screen px-6 py-16 md:px-12">
-      <motion.h1
-        ref={titleRef}
-        initial={{ opacity: 0, y: 50 }}
-        animate={{
-          opacity: titleInView ? 1 : 0,
-          y: titleInView ? 0 : 50,
-        }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-10 text-center"
-      >
-        About Me
-      </motion.h1>
-
-      <div className="w-full max-w-3xl space-y-8 mb-16">
-        {aboutPoints.map((point, index) => {
-          const ref = React.useRef(null);
-          const isInView = useInView(ref, { amount: 0.3, once: true });
-
-          return (
-            <motion.div
-              key={index}
-              ref={ref}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              animate={{
-                opacity: isInView ? 1 : 0,
-                x: isInView ? 0 : (index % 2 === 0 ? -50 : 50)
-              }}
-              transition={{ 
-                duration: 0.8, 
-                delay: 0.2, 
-                ease: "easeOut"
-              }}
-              className="text-lg leading-relaxed text-gray-300 rounded-xl p-4 sm:p-6 bg-black hover:bg-gray-900 transition-all border border-gray-800"
-            >
-              <div className="flex items-start gap-3 sm:gap-4">
-                <motion.span 
-                  className="text-2xl"
-                  animate={{
-                    scale: isInView ? [1, 1.2, 1] : 1
-                  }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 0.5,
-                    times: [0, 0.5, 1]
-                  }}
-                >
-                  {point.icon}
-                </motion.span>
-                <div className="space-y-2">
-                  {point.title && (
-                    <h3 className="font-semibold text-white">{point.title}</h3>
-                  )}
-                  <p className="whitespace-pre-line">{point.text}</p>
-                </div>
-              </div>
-            </motion.div>
-          );
-        })}
+    <section id={id} className="py-20 md:py-32 w-full">
+      <div className="w-full max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={{
+            visible: { transition: { staggerChildren: 0.1 } }
+          }}
+        >
+        <motion.h2
+          variants={fadeIn}
+          className="text-4xl md:text-5xl lg:text-6xl font-normal text-gray-900 mb-12 tracking-airier"
+        >
+          About
+        </motion.h2>
 
         <motion.div
-          ref={buttonRef}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{
-            opacity: buttonInView ? 1 : 0,
-            y: buttonInView ? 0 : 30
-          }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-8 mb-24 w-full flex justify-center" 
+          variants={fadeIn}
+          className="max-w-3xl space-y-6 text-lg md:text-xl text-gray-600 leading-relaxed tracking-airy font-normal"
         >
-          <motion.a
-            href="/Chaitanya_Sonar_Resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative inline-flex items-center gap-2 rounded-lg bg-black px-6 sm:px-8 py-3 sm:py-4 text-lg font-semibold text-white transition-all hover:bg-gray-900"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <span className="text-2xl group-hover:translate-x-1 transition-transform">📄</span>
-            <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-              View Resume
-            </span>
-            <motion.div
-              className="absolute -inset-1 rounded-lg bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-30 blur-lg transition-all group-hover:opacity-50"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.3 }}
-              transition={{ duration: 0.3 }}
-            />
-          </motion.a>
+          <p>
+            I'm a Full Stack Developer with experience in building modern web applications 
+            using React, Next.js, Node.js, and various databases. I enjoy solving complex 
+            problems and turning ideas into reality through clean, maintainable code.
+          </p>
+          
+          <p>
+            Currently working at TwiLearn, I focus on creating efficient and scalable solutions 
+            that deliver exceptional user experiences. I'm always learning new technologies and 
+            best practices to stay at the forefront of web development.
+          </p>
+
+          <p>
+            When I'm not coding, I enjoy exploring new technologies, contributing to open-source 
+            projects, and sharing knowledge with the developer community.
+          </p>
         </motion.div>
+      </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 

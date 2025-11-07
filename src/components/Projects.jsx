@@ -1,97 +1,68 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { PROJECTS } from "../constants";
 
-const projectVariants = {
-  hidden: (index) => ({
-    opacity: 0,
-    x: index % 2 === 0 ? -100 : 100,
-    y: index % 2 === 0 ? -100 : 100,
-  }),
-  visible: (index) => ({
-    opacity: 1,
-    x: 0,
-    y: 0,
-    transition: {
-      delay: index * 0.2,
-      duration: 0.8,
-      ease: "easeOut",
-    },
-  }),
-};
-
-const titleVariants = {
-  hidden: { opacity: 0, y: -50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-};
-
 const Projects = ({ id }) => {
-  const [hasAnimated, setHasAnimated] = useState(false);
-
-  useEffect(() => {
-    const hasPlayed = sessionStorage.getItem("projectsAnimationPlayed");
-
-    if (!hasPlayed) {
-      setHasAnimated(true);
-      sessionStorage.setItem("projectsAnimationPlayed", "true"); // Store in sessionStorage to reset on full reload
-    }
-  }, []);
+  const fadeIn = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  };
 
   return (
-    <div id={id} className="border-b border-neutral-900 pb-16">
-      {/* Title Animation */}
-      <motion.h1
-        className="my-20 text-center text-5xl font-extrabold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent"
-        initial={hasAnimated ? "hidden" : "visible"}
-        animate="visible"
-        variants={titleVariants}
+    <section id={id} className="py-20 md:py-32 w-full">
+      <div className="w-full max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="text-4xl md:text-5xl lg:text-6xl font-normal text-gray-900 mb-16 tracking-airier"
       >
         Projects
-      </motion.h1>
+      </motion.h2>
 
-      <div className="grid gap-12 md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid md:grid-cols-2 gap-8 md:gap-12">
         {PROJECTS.map((project, index) => (
           <motion.div
             key={index}
-            className="relative overflow-hidden rounded-xl border border-neutral-700 
-              bg-gradient-to-b from-black/40 to-black/90 p-6 backdrop-blur-lg shadow-2xl 
-              hover:scale-105 hover:shadow-xl group"
-            initial={hasAnimated ? "hidden" : "visible"}
-            animate="visible"
-            variants={projectVariants}
-            custom={index}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeIn}
+            className="group"
           >
-            {/* Image Section */}
-            <div className="relative w-full overflow-hidden rounded-lg border border-neutral-700">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-            </div>
-
-            {/* Project Info */}
-            <h6 className="mt-4 text-2xl font-semibold text-white">
-              {project.title}
-            </h6>
-            <p className="mt-2 text-neutral-400">{project.description}</p>
-
-            {/* Tech Stack */}
-            <div className="mt-4 flex flex-wrap gap-2">
-              {project.technologies.map((tech, index) => (
-                <span
-                  key={index}
-                  className="rounded bg-neutral-900 px-3 py-1 text-sm font-medium text-orange-500 
-                    transition-all duration-300 hover:bg-orange-500 hover:text-black hover:shadow-lg"
-                >
-                  {tech}
-                </span>
-              ))}
+            <div className="border border-gray-200 hover:border-gray-300 transition-colors overflow-hidden">
+              <div className="aspect-video overflow-hidden bg-gray-100">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-6 space-y-3">
+                <h3 className="text-2xl md:text-3xl font-normal text-gray-900 tracking-airier">
+                  {project.title}
+                </h3>
+                <p className="text-base md:text-lg text-gray-600 leading-relaxed tracking-airy font-normal">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2 pt-2">
+                  {project.technologies.map((tech, techIndex) => (
+                    <span
+                      key={techIndex}
+                      className="px-4 py-2 text-sm font-normal bg-gray-100 text-gray-700 tracking-airy"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           </motion.div>
         ))}
       </div>
-    </div>
+      </div>
+    </section>
   );
 };
 

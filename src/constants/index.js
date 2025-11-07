@@ -42,31 +42,44 @@ I'm always open to exciting opportunities, collaborations, and tech discussions.
 Looking forward to creating something amazing together! 🚀
 `;
 
-// Experience Section Content (cleaning up empty technologies)
+// Experience Section Content
 export const EXPERIENCES = [
   {
-    year: "2024",
-    role: "Frontend Developer",
-    description: `Designed and developed user interfaces for web applications using Next.js and React. Worked closely with backend developers to integrate frontend components with Node.js APIs. Implemented responsive designs and optimized frontend performance.`,
-    technologies: ["HTML", "CSS", "JavaScript"],
+    year: "Jan 2025 – May 2025",
+    role: "Full Stack Developer — Job Portal for College",
+    description: `Developed a college job portal connecting students with recruiters for streamlined placements. Implemented secure authentication and role-based access control for multiple user types. Designed a responsive interface using React.js and Tailwind CSS. Built a Node.js + MongoDB backend for managing job posts, applications, and student profiles.`,
+    technologies: ["React.js", "Node.js", "MongoDB", "Tailwind CSS"],
   },
   {
-    year: "2024",
-    role: "Backend Developer",
-    description: `Developed and maintained web applications using JavaScript, React.js, and Node.js. Designed and implemented RESTful APIs for data communication. Collaborated with cross-functional teams to deliver high-quality software products on schedule.`,
-    technologies: ["Node.js", "MongoDB", "PostgreSQL"],
+    year: "Jan 2025 – Present",
+    role: "Blockchain Developer — Cyfrin Updraft (Web3 & Solidity Development)",
+    description: `Learning and building decentralized applications using Solidity and Ethereum. Deployed and tested smart contracts using Hardhat and Foundry. Gaining hands-on experience with DeFi, NFTs, and blockchain protocols. Working with Web3.js and Ethers.js for on-chain integrations.`,
+    technologies: ["Solidity", "Ethereum", "Hardhat", "Foundry", "Web3.js", "Ethers.js"],
+  },
+];
+
+// Education Section Content
+export const EDUCATION = [
+  {
+    degree: "B.Tech in Computer Science Engineering",
+    specialization: "Specialization: Cybersecurity and Blockchain",
+    institution: "KL University, Vijayawada",
+    period: "2023 – 2027",
+    grade: "CGPA: 9.15",
   },
   {
-    year: "2024 - Present",
-    role: "Full Stack Developer",
-    description: `Led a team in developing and maintaining web applications using JavaScript, React.js, and Node.js. Implemented RESTful APIs and integrated with MongoDB databases. Collaborated with stakeholders to define project requirements and timelines.`,
-    technologies: ["JavaScript", "React.js", "MongoDB"],
+    degree: "Intermediate (12th)",
+    specialization: "",
+    institution: "B.S. Patel Junior College",
+    period: "Completed: 2023",
+    grade: "Percentage: 72%",
   },
   {
-    year: "December 2024 - Present",
-    role: "Web Developer Intern at TwiLearn",
-    description: `Led a team in developing and maintaining web applications using JavaScript, React.js, and Node.js. Implemented RESTful APIs and integrated with MongoDB databases. Collaborated with stakeholders to define project requirements and timelines.`,
-    technologies: ["JavaScript", "React.js", "Next.js", "MongoDB"],
+    degree: "Secondary School (10th)",
+    specialization: "",
+    institution: "Sahakar Vidya Mandir",
+    period: "Completed: 2021",
+    grade: "Percentage: 85.6%",
   },
 ];
 
