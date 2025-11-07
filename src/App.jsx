@@ -7,10 +7,14 @@ import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import Projects from "./components/Projects";
 import Technologies from "./components/Technologies";
-import { useEffect } from "react";
+import Loader from "./components/Loader";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
 
 const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     // Initialize Lenis smooth scrolling
     const lenis = new Lenis({
@@ -38,21 +42,38 @@ const App = () => {
     };
   }, []);
 
+  const handleLoaderComplete = () => {
+    setIsLoading(false);
+  };
+
   return (
     <div className="min-h-screen bg-white text-gray-900">
-      <Navbar />
-      
-      <main className="w-full">
-        <Hero />
-        <About id="about" />
-        <Technologies id="technologies" />
-        <Experience id="experience" />
-        <Projects id="projects" />
-        <Certifications />
-        <Contact id="contact" />
-      </main>
+      <AnimatePresence mode="wait">
+        {isLoading ? (
+          <Loader key="loader" onComplete={handleLoaderComplete} />
+        ) : (
+          <motion.div
+            key="content"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Navbar />
+            
+            <main className="w-full">
+              <Hero />
+              <About id="about" />
+              <Technologies id="technologies" />
+              <Experience id="experience" />
+              <Projects id="projects" />
+              <Certifications />
+              <Contact id="contact" />
+            </main>
 
-      <Footer />
+            <Footer />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
