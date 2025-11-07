@@ -31,33 +31,68 @@ const Projects = ({ id }) => {
             variants={fadeIn}
             className="group"
           >
-            <div className="border border-gray-200 hover:border-gray-300 transition-colors overflow-hidden">
-              <div className="aspect-video overflow-hidden bg-gray-100">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-              <div className="p-6 space-y-3">
-                <h3 className="text-2xl md:text-3xl font-normal text-gray-900 tracking-airier">
-                  {project.title}
-                </h3>
-                <p className="text-base md:text-lg text-gray-600 leading-relaxed tracking-airy font-normal">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2 pt-2">
-                  {project.technologies.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="px-4 py-2 text-sm font-normal bg-gray-100 text-gray-700 tracking-airy"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+            {project.url ? (
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block border border-gray-200 hover:border-gray-300 transition-colors overflow-hidden cursor-pointer"
+              >
+                <div className="aspect-video overflow-hidden bg-gray-100">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-6 space-y-3">
+                  <h3 className="text-2xl md:text-3xl font-normal text-gray-900 tracking-airier group-hover:text-gray-700 transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-base md:text-lg text-gray-600 leading-relaxed tracking-airy font-normal">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    {project.technologies.map((tech, techIndex) => (
+                      <span
+                        key={techIndex}
+                        className="px-4 py-2 text-sm font-normal bg-gray-100 text-gray-700 tracking-airy"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </a>
+            ) : (
+              <div className="border border-gray-200 hover:border-gray-300 transition-colors overflow-hidden">
+                <div className="aspect-video overflow-hidden bg-gray-100">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-6 space-y-3">
+                  <h3 className="text-2xl md:text-3xl font-normal text-gray-900 tracking-airier">
+                    {project.title}
+                  </h3>
+                  <p className="text-base md:text-lg text-gray-600 leading-relaxed tracking-airy font-normal">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    {project.technologies.map((tech, techIndex) => (
+                      <span
+                        key={techIndex}
+                        className="px-4 py-2 text-sm font-normal bg-gray-100 text-gray-700 tracking-airy"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </motion.div>
         ))}
       </div>

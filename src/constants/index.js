@@ -91,6 +91,7 @@ export const PROJECTS = [
     description:
       "A campus recruitment platform connecting students with opportunities and companies with talent through an AI-powered platform. Features include streamlined placements, secure authentication, and role-based access control for multiple user types.",
     technologies: ["React", "Node.js", "MongoDB", "Tailwind CSS", "AI Integration"],
+    url: "https://campus-edgee.vercel.app/",
   },
   {
     title: "EchoBoard",
@@ -105,6 +106,7 @@ export const PROJECTS = [
     description:
       "A modern car rental platform offering unbeatable prices, unlimited miles, and flexible pick-up options. Features an intuitive booking system with real-time availability and seamless user experience.",
     technologies: ["React", "Node.js", "MongoDB", "Tailwind CSS", "Payment Integration"],
+    url: "https://go-vroom.netlify.app/",
   },
 ];
 
